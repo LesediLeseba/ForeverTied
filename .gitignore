@@ -1,0 +1,30 @@
+# --- Local environment (never commit real credentials) ---
+.env
+.env.local
+!.env.example
+
+# --- Python / backend ---
+backend/.venv/
+backend/.env
+backend/.pgdata/
+backend/**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Node / frontend ---
+node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/coverage/
+*.tsbuildinfo
+
+# --- Editors / OS ---
+.DS_Store
+.idea/
+.vscode/
+*.log
