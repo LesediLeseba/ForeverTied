@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bone: #fdfbf7;
+    --surface: #ffffff;
+    --primary: #1b2a26;
+    --primary-hover: #2c403b;
+    --secondary: #e4dfd6;
+    --ink: #1a1a1c;
+    --ink-muted: #5c5c5a;
+    --line: #e5e1da;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bone font-sans text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+
+  /* Headings keep the archival serif; body copy stays in Manrope. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Respect users who prefer less motion — no heavy transitions anywhere. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-bone;
+  }
+}
+
+@layer components {
+  /* Subtle stone grain used behind the public memorial view (10% opacity). */
+  .stone-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    mix-blend-mode: multiply;
+  }
+
+  .hairline {
+    @apply border border-line;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.7rem] font-semibold uppercase tracking-widest2 text-ink-muted;
+  }
+
+  .rule {
+    @apply h-px w-full bg-line;
+  }
+
+  .arch-frame {
+    border-radius: 50% 50% 6px 6px / 38% 38% 2% 2%;
+  }
+
+  .btn-reset {
+    @apply appearance-none bg-transparent p-0 text-left;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Keeps long bios readable on wide memorial pages. */
+  .prose-memorial p {
+    @apply mb-5 text-[1.0625rem] leading-[1.85] text-ink/85;
+  }
+
+  .prose-memorial p:last-child {
+    @apply mb-0;
+  }
+}
